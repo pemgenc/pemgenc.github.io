@@ -83,7 +83,10 @@
       text-decoration: none;
     }
 
-    .nav-links a:hover, .nav-links a:focus-visible { color: var(--accent); }
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      color: var(--accent);
+    }
 
     .language-switch {
       gap: 5px;
@@ -127,32 +130,32 @@
       background: #000;
     }
 
-    .hero-slider, .hero-slider::after {
+    .hero-images {
       position: absolute;
       inset: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      overflow: hidden;
     }
 
-    .hero-slider::after {
+    .hero-images::after {
+      position: absolute;
       z-index: 1;
+      inset: 0;
       content: "";
       background:
-        linear-gradient(90deg, rgba(0,0,0,.78), rgba(0,0,0,.08) 75%),
-        linear-gradient(0deg, rgba(0,0,0,.82), transparent 65%);
+        linear-gradient(90deg, rgba(0,0,0,.58), rgba(0,0,0,.08)),
+        linear-gradient(0deg, rgba(0,0,0,.82), transparent 72%);
       pointer-events: none;
     }
 
     .hero-image {
-      position: absolute;
-      inset: 0;
       width: 100%;
       height: 100%;
+      min-width: 0;
       object-fit: cover;
       object-position: center;
-      opacity: 0;
-      transition: opacity 450ms ease;
     }
-
-    .hero-image.is-active { opacity: 1; }
 
     .hero-inner {
       position: relative;
@@ -199,46 +202,6 @@
       text-decoration: none;
     }
 
-    .slider-button {
-      position: absolute;
-      z-index: 3;
-      top: 50%;
-      width: 48px;
-      height: 48px;
-      border: 1px solid rgba(255,255,255,.65);
-      border-radius: 50%;
-      background: rgba(0,0,0,.55);
-      color: #fff;
-      font-size: 1.8rem;
-      line-height: 1;
-      cursor: pointer;
-      transform: translateY(-50%);
-    }
-
-    .slider-prev { left: 20px; }
-    .slider-next { right: 20px; }
-
-    .slider-dots {
-      position: absolute;
-      z-index: 3;
-      right: var(--gutter);
-      bottom: 26px;
-      display: flex;
-      gap: 10px;
-    }
-
-    .slider-dot {
-      width: 12px;
-      height: 12px;
-      padding: 0;
-      border: 1px solid #fff;
-      border-radius: 50%;
-      background: transparent;
-      cursor: pointer;
-    }
-
-    .slider-dot.is-active { background: var(--accent); }
-
     .section {
       padding: clamp(72px, 10vw, 140px) var(--gutter);
       border-bottom: 1px solid var(--line);
@@ -257,7 +220,9 @@
       gap: clamp(36px,7vw,100px);
     }
 
-    .technology-layout { grid-template-columns: minmax(0,.9fr) minmax(0,1fr); }
+    .technology-layout {
+      grid-template-columns: minmax(0,.9fr) minmax(0,1fr);
+    }
 
     .section-heading h2 {
       max-width: 760px;
@@ -302,8 +267,15 @@
       font-weight: 700;
     }
 
-    .feature h3 { margin: 0 0 5px; font-size: 1.1rem; }
-    .feature p { margin: 0; color: var(--muted); }
+    .feature h3 {
+      margin: 0 0 5px;
+      font-size: 1.1rem;
+    }
+
+    .feature p {
+      margin: 0;
+      color: var(--muted);
+    }
 
     .contact-email {
       display: inline-block;
@@ -360,7 +332,10 @@
         background: #000;
       }
 
-      .nav-links.is-open { display: grid; gap: 0; }
+      .nav-links.is-open {
+        display: grid;
+        gap: 0;
+      }
 
       .nav-links a {
         display: block;
@@ -371,8 +346,10 @@
 
       .hero { min-height: 700px; }
 
-      .hero-slider::after {
-        background: linear-gradient(0deg, rgba(0,0,0,.88), rgba(0,0,0,.12) 90%);
+      .hero-images::after {
+        background:
+          linear-gradient(90deg, rgba(0,0,0,.5), rgba(0,0,0,.12)),
+          linear-gradient(0deg, rgba(0,0,0,.88), rgba(0,0,0,.12) 90%);
       }
 
       .about-layout, .vision-layout, .technology-layout, .careers-layout {
@@ -393,26 +370,17 @@
 
       .hero { min-height: max(620px, calc(100svh - 66px)); }
 
+      .hero-images {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+      }
+
       .hero-motto {
         margin-bottom: 26px;
         font-size: clamp(2.8rem,15vw,4.4rem);
       }
 
       .hero-inner { padding-top: 50px; }
-
-      .slider-button {
-        top: 42%;
-        width: 42px;
-        height: 42px;
-      }
-
-      .slider-prev { left: 12px; }
-      .slider-next { right: 12px; }
-
-      .slider-dots {
-        right: 20px;
-        bottom: 20px;
-      }
 
       .section-image {
         min-height: 220px;
@@ -461,17 +429,20 @@
 
   <main id="top">
     <section class="hero" aria-label="HOLOBILIG smart glasses" data-i18n-aria="heroLabel">
-      <div class="hero-slider" aria-label="HOLOBILIG product images" data-i18n-aria="sliderLabel">
-        <img class="hero-image is-active" src="images/hero-holobilig-2.jpg" alt="Person wearing HOLOBILIG AI smart glasses" data-i18n-alt="heroImage1">
-        <img class="hero-image" src="images/hero-holobilig-1.gif" alt="Close-up of HOLOBILIG smart glasses" data-i18n-alt="heroImage2">
-
-        <button class="slider-button slider-prev" type="button" aria-label="Previous image" data-i18n-aria="previousImage">‹</button>
-        <button class="slider-button slider-next" type="button" aria-label="Next image" data-i18n-aria="nextImage">›</button>
-
-        <div class="slider-dots" aria-label="Choose hero image" data-i18n-aria="chooseImage">
-          <button class="slider-dot is-active" type="button" aria-label="Show image 1" data-i18n-aria="showImage1"></button>
-          <button class="slider-dot" type="button" aria-label="Show image 2" data-i18n-aria="showImage2"></button>
-        </div>
+      <div class="hero-images">
+        <img
+          class="hero-image"
+          src="images/hero-holobilig-2.jpg"
+          alt="Person wearing HOLOBILIG AI smart glasses"
+          data-i18n-alt="heroImage1"
+          fetchpriority="high"
+        >
+        <img
+          class="hero-image"
+          src="images/hero-holobilig-1.gif"
+          alt="Close-up of HOLOBILIG smart glasses"
+          data-i18n-alt="heroImage2"
+        >
       </div>
 
       <div class="hero-inner">
@@ -509,15 +480,24 @@
           <div class="feature-list">
             <article class="feature">
               <span class="feature-number">01</span>
-              <div><h3 data-i18n="feature1Title">Situational awareness</h3><p data-i18n="feature1Description">Present relevant information in the wearer’s field of view.</p></div>
+              <div>
+                <h3 data-i18n="feature1Title">Situational awareness</h3>
+                <p data-i18n="feature1Description">Present relevant information in the wearer’s field of view.</p>
+              </div>
             </article>
             <article class="feature">
               <span class="feature-number">02</span>
-              <div><h3 data-i18n="feature2Title">Connected teams</h3><p data-i18n="feature2Description">Support real-time communication between users and command centers.</p></div>
+              <div>
+                <h3 data-i18n="feature2Title">Connected teams</h3>
+                <p data-i18n="feature2Description">Support real-time communication between users and command centers.</p>
+              </div>
             </article>
             <article class="feature">
               <span class="feature-number">03</span>
-              <div><h3 data-i18n="feature3Title">Modular architecture</h3><p data-i18n="feature3Description">Configure sensing, audio, optics, and computing around user needs.</p></div>
+              <div>
+                <h3 data-i18n="feature3Title">Modular architecture</h3>
+                <p data-i18n="feature3Description">Configure sensing, audio, optics, and computing around user needs.</p>
+              </div>
             </article>
           </div>
         </div>
@@ -575,65 +555,88 @@
       en: {
         pageTitle: "HOLOBILIG — See more, know more, act faster.",
         description: "HOLOBILIG is a modular, AI-enabled smart-glasses platform designed to enhance situational awareness.",
-        mainNavigation: "Main navigation", selectLanguage: "Select language", menu: "Menu",
-        navAbout: "About", navVision: "Vision", navTechnology: "Technology", navCareers: "Careers", navContact: "Contact",
-        heroLabel: "HOLOBILIG smart glasses", sliderLabel: "HOLOBILIG product images",
-        heroImage1: "Person wearing HOLOBILIG AI smart glasses", heroImage2: "Close-up of HOLOBILIG smart glasses",
-        previousImage: "Previous image", nextImage: "Next image", chooseImage: "Choose hero image",
-        showImage1: "Show image 1", showImage2: "Show image 2",
+        mainNavigation: "Main navigation",
+        selectLanguage: "Select language",
+        menu: "Menu",
+        navAbout: "About",
+        navVision: "Vision",
+        navTechnology: "Technology",
+        navCareers: "Careers",
+        navContact: "Contact",
+        heroLabel: "HOLOBILIG smart glasses",
+        heroImage1: "Person wearing HOLOBILIG AI smart glasses",
+        heroImage2: "Close-up of HOLOBILIG smart glasses",
         motto: "See more, know more, act faster.",
         heroEyebrow: "Modular AI-enabled smart glasses",
         heroDescription: "Designed to support situational awareness and real-time communication.",
         explore: "Explore the platform",
-        aboutEyebrow: "About", aboutTitle: "Engineering a new way to see information.",
+        aboutEyebrow: "About",
+        aboutTitle: "Engineering a new way to see information.",
         aboutDescription: "HOLOBILIG is developing a modular AI smart-glasses platform for consumer and defence applications. We combine optical engineering, computer-generated holography, sensing, and AI-enabled information systems to make useful information more accessible through wearable displays.",
         aboutImage: "HOLOBILIG engineering and product development",
-        visionEyebrow: "Vision", visionTitle: "Awareness, integrated into the way teams operate.",
+        visionEyebrow: "Vision",
+        visionTitle: "Awareness, integrated into the way teams operate.",
         visionDescription: "HOLOBILIG brings optical display, sensing, audio, and computing together in a modular wearable platform. The system is designed to deliver relevant information while keeping the wearer focused on the environment.",
-        feature1Title: "Situational awareness", feature1Description: "Present relevant information in the wearer’s field of view.",
-        feature2Title: "Connected teams", feature2Description: "Support real-time communication between users and command centers.",
-        feature3Title: "Modular architecture", feature3Description: "Configure sensing, audio, optics, and computing around user needs.",
+        feature1Title: "Situational awareness",
+        feature1Description: "Present relevant information in the wearer’s field of view.",
+        feature2Title: "Connected teams",
+        feature2Description: "Support real-time communication between users and command centers.",
+        feature3Title: "Modular architecture",
+        feature3Description: "Configure sensing, audio, optics, and computing around user needs.",
         visionImage: "HOLOBILIG smart-glasses platform in use",
-        technologyEyebrow: "Technology", technologyTitle: "Compact optics. Modular hardware. Clear information.",
+        technologyEyebrow: "Technology",
+        technologyTitle: "Compact optics. Modular hardware. Clear information.",
         technologyDescription: "The optical architecture combines an RGB laser-diode light engine with a spatial light modulator (SLM) microdisplay. Light is coupled into a waveguide integrated with the lens, directing the image toward the wearer’s eye.",
         technologyImage: "Optical display components integrated into a glasses temple",
-        careersEyebrow: "Careers", careersTitle: "Build what comes next.",
+        careersEyebrow: "Careers",
+        careersTitle: "Build what comes next.",
         careersDescription: "We welcome people who want to work across optics, semiconductor light sources, embedded systems, AI, product design, and scalable manufacturing.",
-        careersImage: "Engineering team working on wearable optical technology",
-        contactEyebrow: "Contact", contactTitle: "Let’s start a conversation.",
+        contactEyebrow: "Contact",
+        contactTitle: "Let’s start a conversation.",
         contactDescription: "Contact HOLOBILIG for general questions, partnerships, or information about the platform.",
         footerMotto: "See more, know more, act faster."
       },
       tr: {
         pageTitle: "HOLOBILIG — Daha fazlasını gör, daha fazlasını bil, daha hızlı hareket et.",
         description: "HOLOBILIG, durumsal farkındalığı artırmak için tasarlanmış modüler ve yapay zekâ destekli bir akıllı gözlük platformudur.",
-        mainNavigation: "Ana menü", selectLanguage: "Dil seçin", menu: "Menü",
-        navAbout: "Hakkında", navVision: "Vizyon", navTechnology: "Teknoloji", navCareers: "Kariyer", navContact: "İletişim",
-        heroLabel: "HOLOBILIG akıllı gözlükleri", sliderLabel: "HOLOBILIG ürün görselleri",
+        mainNavigation: "Ana menü",
+        selectLanguage: "Dil seçin",
+        menu: "Menü",
+        navAbout: "Hakkında",
+        navVision: "Vizyon",
+        navTechnology: "Teknoloji",
+        navCareers: "Kariyer",
+        navContact: "İletişim",
+        heroLabel: "HOLOBILIG akıllı gözlükleri",
         heroImage1: "HOLOBILIG yapay zekâ destekli akıllı gözlüklerini takan kişi",
         heroImage2: "HOLOBILIG akıllı gözlüklerinin yakın çekimi",
-        previousImage: "Önceki görsel", nextImage: "Sonraki görsel", chooseImage: "Ana görseli seçin",
-        showImage1: "1. görseli göster", showImage2: "2. görseli göster",
         motto: "Daha fazlasını gör, daha fazlasını bil, daha hızlı hareket et.",
         heroEyebrow: "Modüler, yapay zekâ destekli akıllı gözlük",
         heroDescription: "Durumsal farkındalığı ve gerçek zamanlı iletişimi desteklemek üzere tasarlanıyor.",
         explore: "Platformu keşfedin",
-        aboutEyebrow: "Hakkında", aboutTitle: "Bilgiyi görmenin yeni bir yolunu tasarlıyoruz.",
+        aboutEyebrow: "Hakkında",
+        aboutTitle: "Bilgiyi görmenin yeni bir yolunu tasarlıyoruz.",
         aboutDescription: "HOLOBILIG, tüketici ve savunma uygulamalarına yönelik modüler, yapay zekâ destekli bir akıllı gözlük platformu geliştiriyor. Optik mühendisliğini, bilgisayar tarafından oluşturulan holografiyi, algılama teknolojilerini ve yapay zekâ destekli bilgi sistemlerini bir araya getirerek faydalı bilgileri giyilebilir ekranlar üzerinden daha erişilebilir hâle getiriyoruz.",
         aboutImage: "HOLOBILIG mühendislik ve ürün geliştirme çalışmaları",
-        visionEyebrow: "Vizyon", visionTitle: "Farkındalık, ekiplerin çalışma biçimine entegre.",
+        visionEyebrow: "Vizyon",
+        visionTitle: "Farkındalık, ekiplerin çalışma biçimine entegre.",
         visionDescription: "HOLOBILIG; optik ekranı, algılama teknolojilerini, sesi ve bilgi işlem gücünü modüler bir giyilebilir platformda bir araya getirir. Sistem, kullanıcının çevresine odaklanmasını sağlarken ilgili bilgileri sunmak üzere tasarlanmıştır.",
-        feature1Title: "Durumsal farkındalık", feature1Description: "İlgili bilgileri kullanıcının görüş alanında sunar.",
-        feature2Title: "Bağlantılı ekipler", feature2Description: "Kullanıcılar ve komuta merkezleri arasında gerçek zamanlı iletişimi destekler.",
-        feature3Title: "Modüler mimari", feature3Description: "Algılama, ses, optik ve bilgi işlem bileşenlerini kullanıcı ihtiyaçlarına göre yapılandırır.",
+        feature1Title: "Durumsal farkındalık",
+        feature1Description: "İlgili bilgileri kullanıcının görüş alanında sunar.",
+        feature2Title: "Bağlantılı ekipler",
+        feature2Description: "Kullanıcılar ve komuta merkezleri arasında gerçek zamanlı iletişimi destekler.",
+        feature3Title: "Modüler mimari",
+        feature3Description: "Algılama, ses, optik ve bilgi işlem bileşenlerini kullanıcı ihtiyaçlarına göre yapılandırır.",
         visionImage: "Kullanım hâlindeki HOLOBILIG akıllı gözlük platformu",
-        technologyEyebrow: "Teknoloji", technologyTitle: "Kompakt optik. Modüler donanım. Net bilgi.",
+        technologyEyebrow: "Teknoloji",
+        technologyTitle: "Kompakt optik. Modüler donanım. Net bilgi.",
         technologyDescription: "Optik mimari, RGB lazer diyotlu bir ışık motorunu uzamsal ışık modülatörlü (SLM) bir mikro ekranla birleştirir. Işık, lensle bütünleşik bir dalga kılavuzuna aktarılır ve görüntü kullanıcının gözüne yönlendirilir.",
         technologyImage: "Gözlük sapına entegre edilmiş optik ekran bileşenleri",
-        careersEyebrow: "Kariyer", careersTitle: "Geleceği birlikte inşa edelim.",
+        careersEyebrow: "Kariyer",
+        careersTitle: "Geleceği birlikte inşa edelim.",
         careersDescription: "Optik, yarıiletken ışık kaynakları, gömülü sistemler, yapay zekâ, ürün tasarımı ve ölçeklenebilir üretim alanlarında çalışmak isteyen herkesi bekliyoruz.",
-        careersImage: "Giyilebilir optik teknoloji üzerinde çalışan mühendislik ekibi",
-        contactEyebrow: "İletişim", contactTitle: "Bir sohbet başlatalım.",
+        contactEyebrow: "İletişim",
+        contactTitle: "Bir sohbet başlatalım.",
         contactDescription: "Genel sorular, iş ortaklıkları veya platform hakkında bilgi almak için HOLOBILIG ile iletişime geçin.",
         footerMotto: "Daha fazlasını gör, daha fazlasını bil, daha hızlı hareket et."
       }
@@ -665,7 +668,10 @@
       });
 
       document.querySelectorAll("[data-language]").forEach((button) => {
-        button.setAttribute("aria-pressed", String(button.dataset.language === language));
+        button.setAttribute(
+          "aria-pressed",
+          String(button.dataset.language === language)
+        );
       });
 
       try {
@@ -694,62 +700,6 @@
       });
     });
 
-    const heroImages = [...document.querySelectorAll(".hero-image")];
-    const sliderDots = [...document.querySelectorAll(".slider-dot")];
-    let currentSlide = 0;
-
-    /*
-      Keep the original GIF URL, then reload it when its slide is shown.
-      The timestamp makes the browser request a fresh image instance,
-      restarting the animation on mobile browsers.
-    */
-    const gifImage = heroImages.find((image) =>
-      image.getAttribute("src").toLowerCase().endsWith(".gif")
-    );
-
-    const originalGifUrl = gifImage ? gifImage.getAttribute("src") : null;
-
-    function restartGif() {
-      if (!gifImage || !originalGifUrl) return;
-
-      const separator = originalGifUrl.includes("?") ? "&" : "?";
-      gifImage.src = originalGifUrl + separator + "restart=" + Date.now();
-    }
-
-    function showSlide(index) {
-      currentSlide = (index + heroImages.length) % heroImages.length;
-
-      heroImages.forEach((image, i) => {
-        image.classList.toggle("is-active", i === currentSlide);
-      });
-
-      sliderDots.forEach((dot, i) => {
-        dot.classList.toggle("is-active", i === currentSlide);
-      });
-
-      if (heroImages[currentSlide] === gifImage) {
-        restartGif();
-      }
-    }
-
-    document.querySelector(".slider-prev").addEventListener("click", () => {
-      showSlide(currentSlide - 1);
-    });
-
-    document.querySelector(".slider-next").addEventListener("click", () => {
-      showSlide(currentSlide + 1);
-    });
-
-    sliderDots.forEach((dot, index) => {
-      dot.addEventListener("click", () => showSlide(index));
-    });
-
-    document.addEventListener("visibilitychange", () => {
-      if (!document.hidden && heroImages[currentSlide] === gifImage) {
-        restartGif();
-      }
-    });
-
     document.getElementById("year").textContent = new Date().getFullYear();
 
     let savedLanguage = "en";
@@ -758,6 +708,7 @@
     } catch (error) {
       // Default to English if browser storage is unavailable.
     }
+
     setLanguage(savedLanguage);
   </script>
 </body>
